@@ -8,6 +8,7 @@ allowed_users = {'Seyi': {'password': 'seyi', 'account_number': 123456789, 'curr
 
 
 def register(username, password):
+	print(f"****Registering {username}*****")
 	allowed_users[username] = {'password': password, 'current_balance': 0, 'account_number': generateAccountNumber()}
 	return True
 
@@ -20,10 +21,6 @@ def login(username, password):
 def generateAccountNumber():
 	return int(''.join([str(random.randint(0, 9)) for i in range(10)]))
 
-# Get the user's name
-
-
-allowed_users = {'Seyi': {'password': 'seyi', 'account_number': 123456789, 'current_balance': 0}}
 
 exited = False
 while(exited != True):
