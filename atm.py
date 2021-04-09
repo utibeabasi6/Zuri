@@ -21,46 +21,51 @@ def login(username, password):
 def generateAccountNumber():
 	return int(''.join([str(random.randint(0, 9)) for i in range(10)]))
 
+def operations():
+	global exited
+	print("Here are the available options:")
+	print("1. Withdrawal")
+	print("2. Cash deposit")
+	print("3. Complaint")
+
+	selected_option = int(input("Please select an option: "))
+	if selected_option == 1:
+		try:
+			amount = int(input("How much would you like to withdraw: "))
+		except:
+			print("Sorry, invalid input. Please try again.")
+		else:
+			allowed_users[username]['current_balance'] -= amount
+			print("Take your cash!")
+			exited = True
+	elif selected_option == 2:
+		try:
+			amount = int(input("How much would you like to deposit: "))
+		except:
+			print("Sorry, invalid input. Please try again.")
+		else:
+			allowed_users[username]['current_balance'] += amount
+			current_balance = allowed_users[username]['current_balance']
+			print(f"Your current balance is, {current_balance} dollars")
+			exited = True
+	elif selected_option == 3:
+		issue = input("What issue would you like to report: ")
+		print("Thank you for contacting us!")
+		exited = True
+	else:
+			print("Sorry, invalid selection. Please try again.")
 
 exited = False
 while(exited != True):
+	print("****Welcome to the bank****")
+	print("Let's get you logged in!")
 	username = input("What is your username? ")
 	password = input("What is your password? ")
 	if login(username, password):
 		# Get the user's password
 		print(f"Welcome, {username}")
 		print(f"You logged in at {datetime.datetime.now()}")
-		print("Here are the available options:")
-		print("1. Withdrawal")
-		print("2. Cash deposit")
-		print("3. Complaint")
-
-		selected_option = int(input("Please select an option: "))
-		if selected_option == 1:
-			try:
-				amount = int(input("How much would you like to withdraw: "))
-			except:
-				print("Sorry, invalid input. Please try again.")
-			else:
-				allowed_users[username]['current_balance'] -= amount
-				print("Take your cash!")
-				exited = True
-		elif selected_option == 2:
-			try:
-				amount = int(input("How much would you like to deposit: "))
-			except:
-				print("Sorry, invalid input. Please try again.")
-			else:
-				allowed_users[username]['current_balance'] += amount
-				current_balance = allowed_users[username]['current_balance']
-				print(f"Your current balance is, {current_balance} dollars")
-				exited = True
-		elif selected_option == 3:
-			issue = input("What issue would you like to report: ")
-			print("Thank you for contacting us!")
-			exited = True
-		else:
-				print("Sorry, invalid selection. Please try again.")
+		operations()
 				
 	else:
 		print('Sorry, invalid credentials')
