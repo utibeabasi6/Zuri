@@ -3,9 +3,7 @@ import random
 
 allowed_users = {'Seyi': {'password': 'seyi', 'account_number': 123456789, 'current_balance': 0}}
 
-
 # Helper functions
-
 
 def register(username, password):
 	print(f"****Registering {username}*****")
@@ -27,7 +25,6 @@ while(exited != True):
 	username = input("What is your username? ")
 	password = input("What is your password? ")
 	if login(username, password):
-		# Get the user's password
 		print(f"Welcome, {username}")
 		print(f"You logged in at {datetime.datetime.now()}")
 		print("Here are the available options:")
@@ -72,4 +69,6 @@ while(exited != True):
 			print("You have been registered successfully")
 		elif option.lower() == 'e':
 			exited = True
+		elif option.lower() == 'l':
+			pass
 
